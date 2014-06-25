@@ -1,0 +1,39 @@
+{
+  "dependencies": {
+    "bip38": {
+      "version": "0.0.1",
+      "dependencies": {
+        "aes": {
+          "version": "0.1.0"
+        },
+        "scryptsy": {
+          "version": "0.1.0",
+          "dependencies": {
+            "pbkdf2-sha256": {
+              "version": "0.1.1"
+            }
+          }
+        },
+        "crypto-hashing": {
+          "version": "0.1.0",
+          "dependencies": {
+            "binstring": {
+              "version": "0.2.0"
+            }
+          }
+        },
+        "bs58": {
+          "version": "0.3.0",
+          "dependencies": {
+            "bigi": {
+              "version": "0.2.0"
+            },
+            "binstring": {
+              "version": "0.2.0"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+ChatLines = new Meteor.Collection("ChatLines");
+ 
+if (Meteor.isServer) {
+
+    Meteor.publish("chatlines", function () {
+        return ChatLines.find();
+    });
+    ChatLines.allow({
+        insert: function(userId,doc){
+            return true;
+        }
+    })
+}
+ 
+if (Meteor.isClient) {
+	
+
+    Session.set('userKey', null);
+    Session.set('UserAddress', null);
+
+    Meteor.subscribe('chatlines');
+    Template.chat.lines = function () {
+        return ChatLines.find({},{sort:{created_at:-1},limit:50});
+    };
+    Template.chat.chatlineDate = function(timestamp){
+        var date = new Date();
+        date.setTime(timestamp);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        return hours + ':' + minutes + ':' + seconds;
+    };
+    Template.chat.events({
+        'click #postChat' : function (event,template) {
+            ChatLines.insert({
+                created_at: new Date().getTime(),
+                text:       template.find('#chatText').value,
+                username:   template.find('#userName').value
+            });
+        }
+    });
+    
+    Template.userId.events = {
+    	    'input input#key': function () {
+    	    	    ;
+    	    }
+    }
+    Template.userId.address = function() {
+
+    	    var hash160 = "3c176e659bea0f29a3e9bf7880c112b1b31b4dc8";
+    	    var address = new BtcAddress.Address(binConv(hash160, { in : 'hex', out: 'bytes'})); 
+    	    console.log(address.toString()) //16UjcYNBG9GTK4uq2f7yYEbuifqCzoLMGS
+    	    return address.toString();
+    }
+}
+

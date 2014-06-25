@@ -1,0 +1,30 @@
+input{
+    margin:0;
+}
+.container{
+    height:600px;
+    width:600px;
+    border:1px solid #dadada;
+    padding:3px;
+}
+ul{
+    padding:0;
+    margin:0;
+    height:535px;
+    list-style: none;
+    overflow: scroll;
+}
+ul li{
+    padding:2px;
+    margin:0;
+    color: #5b5b5b;
+}
+#chatText{
+    width:500px;
+}
+#userName{
+    width:596px;
+}
+#key{
+    width:596px;
+}

@@ -1,0 +1,180 @@
+<head>
+  <title>chat</title>
+      <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+
+    {{> header}}
+<div class="container-fluid" id="rooms">
+      <hr>      <hr>
+
+{{> rooms}}
+
+      <div class="span8 offset1">
+      <div class="well">
+      {{> chat}}
+      </div>
+    </div>
+
+    {{> about}}
+    
+</div>
+
+      <hr>
+
+      <footer>
+        <p>© k9ert 2014</p>
+      </footer>
+
+</body>
+
+
+
+<template name="rooms">
+
+
+      <!-- <div class="row-fluid">-->
+        <div class="span5">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Your Rooms <button class="btn btn-mini" id="create-room-button">new</button></li>
+              {{#each userRooms}}
+              <div class="selected">
+              <li><a href="#room" class="roomSwitch">{{address}}</a><button class="btn btn-mini refresh-room-button" id="{{address}}">refresh</button></li>
+              </div>
+              {{/each}}
+              
+              
+              <li class="nav-header">Users</li>
+              {{> usersInRoom}}
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        
+ <!--     </div>/row-->
+</template>
+
+<template name="usersInRoom">
+{{#each usersInRoom}}
+<li><a href="#room" class="roomSwitch">{{this}}</a><button class="btn btn-mini enable-user-button" id="{{this}}">enable</button></li>
+{{/each}}
+</template>
+
+
+<template name="chat">
+
+    <div class="well-large" id="chat">
+{{> userId}}
+        <ul>
+            {{#each lines}}
+                <li>
+                    {{chatlineDate created_at}} 
+                    <b>{{userPublicAddressAbbrev}}</b>: 
+                     {{#if isValid}}
+                    {{text}}
+                    {{else}}
+                    Not verfied Message
+                    {{/if}}
+                    
+                </li>
+            {{/each}}
+        </ul>
+        <div class="control-chat">
+            <input id="chatText" type="text">
+            <input id="postChat" type="submit" value="schreiben">
+        </div>
+    </div>
+</template>
+
+
+<template name="header">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">chaddress</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <span class0"brand"> User: {{userPublicAddressAbbrev}}</span>
+            </p>
+            <ul class="nav">
+              <li id="rooms_link"><a href="#rooms">Rooms</a></li>
+              <li class="active" id="chat_link"><a href="#browser">Chat</a></li>
+              <li id="about_link"><a href="#about">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+</template>
+
+
+<template name="room">
+<div class="span9">
+          <div class="hero-unit">
+            <h1>Address based chatrooms!</h1>
+            <p>In order to chat with someone else, you need to reserver a chatroom/address and pass some money over.</p>
+            <p><a class="btn btn-primary btn-large" id="create-room-button">Create Room »</a></p>
+          </div>
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+</template>
+
+<template name="userId">
+        <div>
+            Your Private Key: <input id="userPrivateKey" type="text" value="{{userPrivateKey}}">
+        </div>
+        <div>
+            Your Public Key: <input id="userPublicKey" type="text" value="{{userPublicKey}}">
+        </div>
+        <div>
+            Your Address: <input id="userPublicAddress" type="text" value="{{userPublicAddress}}">
+        </div>
+</template>

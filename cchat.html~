@@ -1,0 +1,31 @@
+<head>
+  <title>chat</title>
+</head>
+
+<body>
+  {{> chat}}
+</body>
+
+<template name="chat">
+    <div class="container">
+{{> userId}}
+        <ul>
+            {{#each lines}}
+                <li>{{chatlineDate created_at}} <b>{{username}}</b>: {{text}}</li>
+            {{/each}}
+        </ul>
+        <div class="control-chat">
+            <input id="chatText" type="text">
+            <input id="postChat" type="submit" value="schreiben">
+        </div>
+    </div>
+</template>
+
+<template name="userId">
+        <div>
+            Dein Key: <input id="key" type="text" value="unnamed">
+        </div>
+        <div>
+            Deine address: <input id="address" type="text" value="{{address}}">
+        </div>
+</template>
